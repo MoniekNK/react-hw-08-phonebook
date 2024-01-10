@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Contacts from 'pages/Contacts';
-import Login from 'pages/Login';
-import Register from 'pages/Register';
+import { Contacts } from '../../pages/Contacts';
+import { Login } from '../../pages/Login';
+import { Register } from '../../pages/Register';
 import './App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsLogged } from 'redux/selectors';
-import { refreshUser } from 'redux/operations';
+import { getIsLogged } from '../../redux/selectors';
+import { refreshUser } from '../../redux/operations';
 
 function App() {
   const isLogged = useSelector(getIsLogged);

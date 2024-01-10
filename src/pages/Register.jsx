@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { registerUser, refreshUser } from 'redux/operations';
-import { getIsLogged } from 'redux/selectors';
-import Navigation from 'components/Navigation/Navigation';
+import { registerUser, refreshUser } from './../redux/operations';
+import { getIsLogged } from './../redux/selectors';
+import { Navigation } from './../components/Navigation';
 
-const Register = () => {
+export const Register = () => {
   const isLogged = useSelector(getIsLogged);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -84,5 +84,3 @@ const Register = () => {
     </>
   );
 };
-
-export default Register;

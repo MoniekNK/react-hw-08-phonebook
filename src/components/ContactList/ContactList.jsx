@@ -1,8 +1,8 @@
 import React from 'react';
-import Contact from '../Contact/Contact';
-import { getContacts, getFilter } from 'redux/selectors';
+
+import { getContacts, getFilter } from '../../redux/selectors';
 import { useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from '../../redux/operations';
 import { useDispatch } from 'react-redux';
 import css from './ContactList.module.css';
 
@@ -23,12 +23,12 @@ const ContactList = () => {
         )
         .map(contact => {
           return (
-            <Contact key={contact.id}>
+            <li key={contact.id}>
               {contact.name} : {contact.number}{' '}
               <button id={contact.id} onClick={() => handleDelete(contact.id)}>
                 Delete
               </button>
-            </Contact>
+            </li>
           );
         })}
     </ul>

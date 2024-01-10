@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import css from './Navigation.module.css';
-const Navigation = () => {
+
+export const Navigation = () => {
   return (
     <ul className={css['wrapper']}>
       <li>
@@ -12,5 +13,3 @@ const Navigation = () => {
     </ul>
   );
 };
-
-export default Navigation;

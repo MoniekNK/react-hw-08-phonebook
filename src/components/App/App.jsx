@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIsLogged } from '../../redux/selectors';
 import { refreshUser } from '../../redux/operations';
 
-function App() {
+const App = () => {
   const isLogged = useSelector(getIsLogged);
   const dispatch = useDispatch();
 
@@ -36,6 +36,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export { App };

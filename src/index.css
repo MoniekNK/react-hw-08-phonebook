@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+@import 'normalize.css';
 
 body {
   margin: 0;
@@ -13,24 +13,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 ul {
@@ -41,11 +28,9 @@ a {
   text-decoration: none;
   color: #ff6405;
   font-weight: 600;
-}
-
-a:hover,
-a:focus {
-  color: #27357e;
+  &:hover {
+    color: #1d3627;
+  }
 }
 
 h2 {
@@ -57,23 +42,22 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: darkseagreen;
 }
 
 button {
   padding: 10px 40px;
   cursor: pointer;
-  border: none;
   border-radius: 25px;
   font-weight: bold;
   font-size: 15px;
   background-color: #d065ab;
   transition: background-color 250ms linear, transform 250ms linear;
-}
-
-button:hover,
-button:focus {
-  background-color: #972e73;
-  color: white;
+  &:hover,
+  &:focus {
+    background-color: #972e73;
+    color: white;
+  }
 }
 
 input {
@@ -90,6 +74,7 @@ input {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: #1d3627;
 }
 
 .center {
@@ -101,9 +86,8 @@ input {
   border: 1px solid #972e73;
   padding: 15px;
   border-radius: 15px;
-}
-
-.border:hover,
-.border:focus {
-  transform: scale(1.1);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }

@@ -1,22 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmail } from '../../redux/selectors';
 import { logoutUser } from '../../redux/operations';
-import css from './UserMenu.module.css';
+import { Button, Text, Box } from '@chakra-ui/react';
 
-const UserMenu = () => {
+export const UserMenu = () => {
   const email = useSelector(getEmail);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(logoutUser());
-  };
-
   return (
-    <div className={css['wrapper']}>
-      <p>{email}</p>
-      <button onClick={handleClick}>Logout</button>
-    </div>
+    <Box display="flex" alignItems="center">
+      <Text as="b" mr="4">
+        Welcome, {email}
+      </Text>
+      <Button variant="solid" onClick={() => dispatch(logoutUser())}>
+        Logout
+      </Button>
+    </Box>
   );
 };
-
-export default UserMenu;

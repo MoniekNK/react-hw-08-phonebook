@@ -3,7 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { registerUser, refreshUser } from './../redux/operations';
 import { getIsLogged } from './../redux/selectors';
-import { Navigation } from '../components/Navigation/Navigation';
+import Navigation from '../components/Navigation/Navigation';
+import {
+  useToast,
+  Box,
+  Input,
+  Button,
+  Heading,
+  Text,
+  Link,
+} from '@chakra-ui/react';
 
 export const Register = () => {
   const isLogged = useSelector(getIsLogged);
@@ -12,6 +21,7 @@ export const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const toast = useToast();
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -22,10 +32,27 @@ export const Register = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(registerUser({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+    try {
+      await dispatch(registerUser({ name, email, password }));
+      setName('');
+      setEmail('');
+      setPassword('');
+      toast({
+        title: 'Registration Successful',
+        description: 'You have successfully registered.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        title: 'Registration Failed',
+        description: 'An error occurred during registration. Please try again.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
@@ -33,11 +60,21 @@ export const Register = () => {
       <header>
         <Navigation />
       </header>
-      <div className="container center">
-        <div className="border">
+      <Box className="container center">
+        <Box
+          borderWidth="1px"
+          borderRadius="lg"
+          p="8"
+          maxW="md"
+          mx="auto"
+          mt="8"
+          bg="white"
+          boxShadow="md"
+        >
+          <Heading mb="4">Register</Heading>
           <form onSubmit={handleSubmit}>
-            <div>
-              <input
+            <Box mb="4">
+              <Input
                 id="name"
                 name="name"
                 type="text"
@@ -45,10 +82,13 @@ export const Register = () => {
                 placeholder="Name"
                 value={name}
                 onChange={e => setName(e.target.value)}
+                bg="gray.100"
+                borderColor="teal.300"
+                boxShadow="base"
               />
-            </div>
-            <div>
-              <input
+            </Box>
+            <Box mb="4">
+              <Input
                 id="email-address"
                 name="email"
                 type="email"
@@ -56,11 +96,13 @@ export const Register = () => {
                 placeholder="Email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
+                bg="gray.100"
+                borderColor="teal.300"
+                boxShadow="base"
               />
-            </div>
-
-            <div>
-              <input
+            </Box>
+            <Box mb="4">
+              <Input
                 id="password"
                 name="password"
                 type="password"
@@ -68,19 +110,25 @@ export const Register = () => {
                 placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                bg="gray.100"
+                borderColor="teal.300"
+                boxShadow="base"
               />
-            </div>
-
-            <div>
-              <button type="submit">Register</button>
-            </div>
+            </Box>
+            <Box>
+              <Button type="submit" colorScheme="teal" size="md">
+                Register
+              </Button>
+            </Box>
           </form>
-
-          <p>
-            Already have an account? <NavLink to="/login">Login</NavLink>
-          </p>
-        </div>
-      </div>
+          <Text mt="4">
+            Already have an account?{' '}
+            <Link as={NavLink} to="/login">
+              Login
+            </Link>
+          </Text>
+        </Box>
+      </Box>
     </>
   );
 };

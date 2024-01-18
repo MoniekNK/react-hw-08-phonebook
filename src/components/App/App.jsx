@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react'; // Dodaj ten import
 import { Contacts } from '../../pages/Contacts';
 import { Login } from '../../pages/Login';
 import { Register } from '../../pages/Register';
@@ -17,7 +18,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <ChakraProvider>
       <div>
         <section>
           <Routes>
@@ -29,12 +30,11 @@ const App = () => {
               }
             />
             <Route path="login" element={<Login />} />
-            <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Routes>
         </section>
       </div>
-    </>
+    </ChakraProvider>
   );
 };
 

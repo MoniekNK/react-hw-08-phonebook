@@ -3,7 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser, refreshUser } from '../redux/operations';
 import { getIsLogged } from '../redux/selectors';
-import { Navigation } from '../components/Navigation/Navigation';
+import Navigation from '../components/Navigation/Navigation';
+import {
+  ChakraProvider,
+  Input,
+  Button,
+  Box,
+  Heading,
+  Text,
+  Link,
+} from '@chakra-ui/react';
 
 export const Login = () => {
   const isLogged = useSelector(getIsLogged);
@@ -27,16 +36,26 @@ export const Login = () => {
   };
 
   return (
-    <>
+    <ChakraProvider>
       <header>
         <Navigation />
       </header>
 
-      <div className="container center">
-        <div className="border">
+      <Box className="container center">
+        <Box
+          borderWidth="1px"
+          borderRadius="lg"
+          p="8"
+          maxW="md"
+          mx="auto"
+          mt="8"
+          bg="white"
+          boxShadow="md"
+        >
+          <Heading mb="4">Login</Heading>
           <form onSubmit={handleSubmit}>
-            <div>
-              <input
+            <Box mb="4">
+              <Input
                 id="email-address"
                 name="email"
                 type="email"
@@ -44,11 +63,12 @@ export const Login = () => {
                 placeholder="Email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
+                autoComplete="email"
               />
-            </div>
+            </Box>
 
-            <div>
-              <input
+            <Box mb="4">
+              <Input
                 id="password"
                 name="password"
                 type="password"
@@ -56,19 +76,25 @@ export const Login = () => {
                 placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                autoComplete="current-password"
               />
-            </div>
+            </Box>
 
-            <div>
-              <button type="submit">Login</button>
-            </div>
+            <Box>
+              <Button type="submit" colorScheme="teal" size="md" w="full">
+                Login
+              </Button>
+            </Box>
           </form>
 
-          <p>
-            No account yet? <NavLink to="/register">Register</NavLink>
-          </p>
-        </div>
-      </div>
-    </>
+          <Text mt="8">
+            No account yet?{' '}
+            <Link as={NavLink} to="/register">
+              Register
+            </Link>
+          </Text>
+        </Box>
+      </Box>
+    </ChakraProvider>
   );
 };
